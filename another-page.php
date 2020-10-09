@@ -6,10 +6,12 @@
 
 	require( 'vendor/autoload.php' );
 	require( 'GoogleAuthentication.php' );
+	require( 'gauth-config.php' );
 
 	$gauth = GoogleAuthentication::get_instance(
-		array( '[[Your GSuite Group Directory Name Here - it can be found in the address bar when you visit gsuite group page]]' ),
-		'https://' . $_SERVER['HTTP_HOST'] . '/index.php'
+		$groups_array,
+		$service_user_to_impersonate,
+		$url_path_to_login
 	);
 
 	$data = $gauth->check_authentication();

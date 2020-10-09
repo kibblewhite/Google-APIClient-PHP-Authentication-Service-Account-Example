@@ -18,6 +18,11 @@
 	require( 'GoogleAuthentication.php' );
 
 	/**
+	 *	We will need this to include our defaults when instantiating the GoogleAuthentication class
+	 */
+	require( 'gauth-config.php' );
+
+	/**
 	 *	Init GoogleAuthentication
 	 *
 	 *	@param array	$groups			Array list of the Google Group we will check for the user in - the value is used in the `listMembers` function
@@ -25,8 +30,9 @@
 	 *	@param string	$redirect_uri	Where to send the browser on authentication
 	 */
 	$gauth = GoogleAuthentication::get_instance(
-		array( '[[Your GSuite Group Directory Name Here - it can be found in the address bar when you visit gsuite group page]]' ),
-		'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF']
+		$groups_array,
+		$service_user_to_impersonate,
+		$url_path_to_login
 	);
 
 	/**

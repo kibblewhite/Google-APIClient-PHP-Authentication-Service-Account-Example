@@ -34,16 +34,17 @@ class GoogleAuthentication {
 		 *	@param string	$redirect_uri	Where to send the browser on authentication
 		 *	@param string	$reset_uri		(Optional) This is where we send the browser back to if we need to reset the page
 		 */
-		public static function get_instance( $groups = array(), $redirect_uri, $reset_uri = null ) {
-				if ( ! isset( self::$instance ) ) { self::$instance = new self( $groups, $redirect_uri, $reset_uri ); }
+		public static function get_instance( $groups = array(), $service_user_to_impersonate, $redirect_uri, $reset_uri = null ) {
+				if ( ! isset( self::$instance ) ) { self::$instance = new self( $groups, $service_user_to_impersonate, $redirect_uri, $reset_uri ); }
 				return self::$instance;
 		}
 
-		function __construct( $groups, $redirect_uri, $reset_uri ) {
+		function __construct( $groups, $service_user_to_impersonate, $redirect_uri, $reset_uri ) {
 
 			if ( php_sapi_name() == 'cli' ) { die( 'Only run as a Common Language Infrastructure' ); }
 			$this->check_groups_array = $groups;
 			$this->reset_uri = empty( $reset_uri ) ? filter_var( 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'], FILTER_SANITIZE_URL ) : filter_var( $reset_uri, FILTER_SANITIZE_URL );
+			$this->service_user_to_impersonate = empty( $service_user_to_impersonate ) ? $this->service_user_to_impersonate : $service_user_to_impersonate;
 
 			/**
 			 *	Here we setup the google client libary and set the authentication configuration via a filepath

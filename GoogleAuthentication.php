@@ -14,10 +14,10 @@ class GoogleAuthentication {
 		/**
 		 *	The following two files are generated from the GCP console: https://console.cloud.google.com/apis/credentials
 		 *	Create a 'OAuth 2.0 Client' and 'Service Account' and you will be able to download json files.
-		 *	Hote:	The 'Service Account' json download file is often only avaiable duingthe creation of the account,
+		 *	Note:	The 'Service Account' json download file is often only avaiable duing the creation of the account,
 		 *			so be sure to keep that file somewhere safe otherwise you will need to re-generate the account to get
 		 *			access to that file again. You could also re-create the json file manually. Be sure to double check
-		 *			that the IAM Service Account is assigned to the Group Admin role if required.
+		 *			that the IAM Service Account is assigned to the Group Admin role if/where required.
 		 */
 		private $client_authentication_configuration_filepath = __DIR__ . DIRECTORY_SEPARATOR . 'client_secret.json';
 		private $service_authentication_configuration_filepath = __DIR__ . DIRECTORY_SEPARATOR . 'service_account_secret.json';

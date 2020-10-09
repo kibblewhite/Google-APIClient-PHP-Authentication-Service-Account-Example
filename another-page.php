@@ -8,7 +8,7 @@
 	require( 'GoogleAuthentication.php' );
 
 	$gauth = GoogleAuthentication::get_instance(
-		array( '00tyjcwt1byttyk' ),
+		array( '[[Your GSuite Group Directory Name Here - it can be found in the address bar when you visit gsuite group page]]' ),
 		'https://' . $_SERVER['HTTP_HOST'] . '/index.php'
 	);
 

@@ -20,11 +20,12 @@
 	/**
 	 *	Init GoogleAuthentication
 	 *
-	 *	@param array	$groups			Array list of the Google Group we will check for the user in
+	 *	@param array	$groups			Array list of the Google Group we will check for the user in - the value is used in the `listMembers` function
+	 *									https://github.com/googleapis/google-api-php-client-services/blob/master/src/Google/Service/Directory/Resource/Members.php
 	 *	@param string	$redirect_uri	Where to send the browser on authentication
 	 */
 	$gauth = GoogleAuthentication::get_instance(
-		array( '[[Your GSuite Group Directory Name Here]]' ),
+		array( '[[Your GSuite Group Directory Name Here - it can be found in the address bar when you visit gsuite group page]]' ),
 		'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF']
 	);
 

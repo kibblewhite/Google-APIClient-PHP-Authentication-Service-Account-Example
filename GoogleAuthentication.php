@@ -145,10 +145,10 @@ class GoogleAuthentication {
 					// If $payload was empty or null, then verification failed, do not persist token
 					if ( !empty( $payload ) ) {
 							// To persist the token, we should save it into our session cookies, in this example, when we close the browser tab, this cookie will be cleared
-							setcookie( $this->cookie_token_key, json_encode( $token ) );
+							setcookie( $this->cookie_token_key, json_encode( $token, JSON_PRETTY_PRINT ) );
 
 							// This is for debugging purposes only to check the verfication payload - comment this out when done for security purposes
-							setcookie( 'verify_token_payload', json_encode( $payload ) );
+							setcookie( 'verify_token_payload', json_encode( $payload, JSON_PRETTY_PRINT ) );
 					}
 
 					// Before the page fully loads, we should either redirect to a user logged-in only page, or back to here to display the logged-in only sections of this page
@@ -212,7 +212,7 @@ class GoogleAuthentication {
 			if ( $this->email_check_group( $payload['email'] ) === FALSE ) {
 				$this->client->revokeToken();
 				// If we do not find our user, set the browser's cookie `id_token` to NULL
-				setcookie( $this->cookie_token_key, json_encode( array( 'id_token' => NULL ) ) );
+				setcookie( $this->cookie_token_key, json_encode( array( 'id_token' => NULL ), JSON_PRETTY_PRINT ) );
 				if ( $auto_login ) { header( 'Location: ' . $this->reset_uri ); }
 				return NULL;
 			}			
